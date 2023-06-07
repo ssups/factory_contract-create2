@@ -59,6 +59,7 @@ contract FactoryV2 {
     function getBytecode(
         address accountOwner
     ) public pure returns (bytes memory) {
+        // 여기서 accountOwner는 Account 컨트렉트의 constructor 파라미터
         bytes memory bytecode = type(AccountV2).creationCode;
         return abi.encodePacked(bytecode, abi.encode(accountOwner));
     }
