@@ -8,7 +8,12 @@ contract FactoryV1 {
     function deploy(bytes memory code, uint256 salt) public {
         address addr;
         assembly {
-            addr := create2(0, add(code, 0x20), mload(code), salt)
+            addr := create2(
+                0, // amount to sent to new contract
+                add(code, 0x20), // ost
+                mload(code), // len
+                salt // salt
+            )
             if iszero(extcodesize(addr)) {
                 revert(0, 0)
             }
